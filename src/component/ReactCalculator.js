@@ -1,8 +1,8 @@
-import "./reactCalculator.css"
+import "./Calculator.css"
 
 const ReactCalculator = function(){
     return(
-        <div>
+        <div className="mainContainer">
             <div className="container">
                 <div className="displayScreen">
                     <h1>7 x 7 = 49</h1>
@@ -15,13 +15,23 @@ const ReactCalculator = function(){
                         <button>+</button>
                     </div>
                     <div className="eachButton">
-                        <button></button>
-                        <button></button>
-                        <button></button>
-                        <button></button>
+                        <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
+                        <button>-</button>
                     </div>
-                    <div className="eachButton"></div>
-                    <div className="eachButton"></div>
+                    <div className="eachButton">
+                        <button>7</button>
+                        <button>8</button>
+                        <button>9</button>
+                        <button>*</button>
+                    </div>
+                    <div className="eachButton">
+                        <button className="special">C</button>
+                        <button>0</button>
+                        <button className="special">=</button>
+                        <button>/</button>
+                    </div>
                 </div>
             </div>
         </div>
