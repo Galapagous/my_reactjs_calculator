@@ -5,7 +5,6 @@
 .container{
     width: 400px;
     height: 500px;
-    /* border: 1px solid crimson; */
     margin: auto;
     margin-top: 30px;
     background-color: black;
@@ -32,7 +31,6 @@
 }
 .eachButton{
     margin-bottom: 10px;
-    /* border: 1px solid crimson; */
     padding: 0px 5px;
     Display: flex;
     align-items: center;
@@ -58,4 +56,3 @@
     border: none;
     color: gold;
 }
-/* ----------------Display Screen Design----------------- */
