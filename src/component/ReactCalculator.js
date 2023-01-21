@@ -3,8 +3,8 @@ import { useState } from "react"
 
 const ReactCalculator = function(){
     // ------------State management item-------------------
-    const [previousValue, setPreviousValue] = useState(0)
-    const [currentValue, setCurrentValue] = useState(0)
+    const [previousValue, setPreviousValue] = useState("0")
+    const [currentValue, setCurrentValue] = useState("0")
     const [operator, setOperator] = useState(null)
     const [result, setResult] = useState(null)
     // ------------Event Handling functions-------------------
@@ -13,12 +13,16 @@ const ReactCalculator = function(){
         let buttonValue = event.target.innerHTML
         switch (buttonClass) {
             case "numbers":
-                currentValue === '0' ? setCurrentValue(buttonValue) : setCurrentValue(currentValue + buttonValue)
+               if (currentValue === '0'){
+                    setCurrentValue(buttonValue)
+                }else{
+                    setCurrentValue(currentValue + buttonValue)
+               }
                 break;
             case "operator":
                 if (operator === null){
                     setPreviousValue(currentValue)
-                    setCurrentValue = '0'
+                    setCurrentValue("0")
                     setOperator(buttonValue)
                 }else{
                     handleEvaluation()
@@ -36,16 +40,44 @@ const ReactCalculator = function(){
                 handleEvaluation()
                 break;
             case "modifier":
-                handleEvaluation()
+                if (buttonValue === 'CLR'){
+                    setCurrentValue("0")
+                    setPreviousValue("0")
+                    setResult(null)
+                    setOperator(null)
+                }else{
+                    setCurrentValue((currentValue)=>setCurrentValue(currentValue.slice(0, -1)))
+                }
                 break;
             default:
                 alert("its a special one")
                 break;
         }
     }
-    
+    const handleEvaluation = ()=>{
+        let first = parseFloat(previousValue)
+        let second = parseFloat(currentValue)
+        switch (operator) {
+            case "*":
+                setResult(first * second)
+                break;
+            case "+":
+                setResult(first + second)
+                break;
+            case "-":
+                setResult(first - second)
+                break;
+            case "/":
+                setResult(first / second)
+                break;
+            default:
+                break;
+        }
+        setCurrentValue(result.toString())
+        setPreviousValue("0")
+        setOperator(null)
+    }
     // ------------Event Handling functions-------------------
-
     return(
         <div className="mainContainer">
             <div className="container">
