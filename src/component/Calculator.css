@@ -20,8 +20,16 @@
     text-align: right;
     margin-bottom: 10px;
 }
-.displayScreen h1{
-    font-size: 3rem;
+.displayScreen .preValue{
+    font-size: 1rem;
+    height: 25%;
+}
+.displayScreen .curValue{
+    font-size: 2rem;
+    height: 75%;
+}
+.displayScreen .prevValue{
+    font-size: 1rem;
 }
 /* ----------------buttons Design----------------- */
 .buttons{

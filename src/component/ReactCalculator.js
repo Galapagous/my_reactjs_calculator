@@ -2,27 +2,60 @@ import "./Calculator.css"
 import { useState } from "react"
 
 const ReactCalculator = function(){
+    // ------------State management item-------------------
+    const [previousValue, setPreviousValue] = useState(0)
     const [currentValue, setCurrentValue] = useState(0)
+    const [operator, setOperator] = useState(null)
+    const [result, setResult] = useState(null)
+    // ------------Event Handling functions-------------------
     const handleClick=(event)=>{
         let buttonClass = event.target.className
         let buttonValue = event.target.innerHTML
         switch (buttonClass) {
             case "numbers":
-                setCurrentValue(currentValue.toString().concat(buttonValue.toString()))
+                currentValue === '0' ? setCurrentValue(buttonValue) : setCurrentValue(currentValue + buttonValue)
                 break;
             case "operator":
-                alert("its an operator")
+                if (operator === null){
+                    setPreviousValue(currentValue)
+                    setCurrentValue = '0'
+                    setOperator(buttonValue)
+                }else{
+                    handleEvaluation()
+                    setOperator(buttonValue)
+                }
+                break;
+            case "dot":
+                if (currentValue.includes(".")){
+                    return
+                }else{
+                    setCurrentValue(currentValue + buttonValue)
+                }
+                break;
+            case "eval":
+                handleEvaluation()
+                break;
+            case "modifier":
+                handleEvaluation()
                 break;
             default:
                 alert("its a special one")
                 break;
         }
     }
+    
+    // ------------Event Handling functions-------------------
+
     return(
         <div className="mainContainer">
             <div className="container">
                 <div className="displayScreen">
-                    <h1>{currentValue}</h1>
+                    <div className="preValue">
+                        <h4>{previousValue}</h4>
+                    </div>
+                    <div className="curValue">
+                        <h1>{currentValue}</h1>
+                    </div>
                 </div>
                 <div className="buttons">
                     <div className="eachButton">
@@ -44,10 +77,14 @@ const ReactCalculator = function(){
                         <button className="operator" onClick={handleClick}>*</button>
                     </div>
                     <div className="eachButton">
-                        <button className="special" onClick={handleClick}>C</button>
+                        <button className="dot" onClick={handleClick}>.</button>
                         <button className="numbers" onClick={handleClick}>0</button>
-                        <button className="special" onClick={handleClick}>=</button>
+                        <button className="eval" onClick={handleClick}>=</button>
                         <button className="operator" onClick={handleClick}>/</button>
+                    </div>
+                    <div className="eachButton">
+                        <button className="modifier" onClick={handleClick}>CLR</button>
+                        <button className="modifier" onClick={handleClick}>BSP</button>
                     </div>
                 </div>
             </div>
