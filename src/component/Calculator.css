@@ -1,66 +1,64 @@
-.MainContainer{
-    width: 100vw;
-    height: 100vh;
-}
-.container{
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    margin-top: 30px;
-    background-color: black;
-}
-/* ----------------Display Screen Design----------------- */
-.displayScreen{
-    height: 25%;
+.main-container{
     width: 100%;
-    background-color: transparent;
-    padding-top: 5px;
-    border-bottom: 1px solid gold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(1, 21, 39);
+}
+
+.calc-container{ 
+    width: 500px;
+    height: 600px;
+}
+
+ .display{
+    width: 100%;
+    height: 100px;
+    background-color: black;
     color: white;
     text-align: right;
-    margin-bottom: 10px;
 }
-.displayScreen .preValue{
-    font-size: 1rem;
-    height: auto;
+.display .prev{
+    width: 100%;
+    height: 30px;
+    font-size: 1.8rem;
 }
-.displayScreen .curValue{
+.display .curr{
+    width: 100%;
+    height: 70px;
     font-size: 2rem;
-    height: auto;
 }
-.displayScreen .prevValue{
-    font-size: 1rem;
-}
-/* ----------------buttons Design----------------- */
 .buttons{
     width: 100%;
-    height: 75%;
-    margin-top: 20px;
-}
-.eachButton{
-    margin-bottom: 10px;
-    padding: 0px 5px;
-    Display: flex;
+    height: 500px;
+    margin-top: 10px;
+    background-color: black;
+    display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    flex-direction: column;
 }
-.eachButton button{
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+.button-row{
+    width: 90%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.button-row button{
+    width: 100px;
+    height: 80px;
     cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: 500;
-    background-color: transparent;
-    color: white;
-    border: 1px solid gold;
+    border-radius: 5px;
+    font-size: 2rem;
+    font-weight: 600;
 }
-.eachButton :nth-child(4){
-    background-color: gold;
-    color: black;
-    border: none;
+.button-row .modifier{
+    background-color: rgb(1, 21, 39);
 }
-.eachButton .special{
-    border: none;
-    color: gold;
-}
+.button-row .evaluate{
+    background-color: orange;
+} 
