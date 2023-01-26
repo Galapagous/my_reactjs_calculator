@@ -22,7 +22,6 @@ const ReactCalculator = function(){
                     setPreviousValue("0")
                     setOperator(null)
                 }else if(buttonValue === "DEL"){
-                    alert("delete requested")
                     if (currentValue.length === 1 && currentValue === "0"){
                         setCurrentValue("0")
                         setPreviousValue("0")
