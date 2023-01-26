@@ -2,18 +2,91 @@ import "./Calculator.css"
 import { useState } from "react"
 
 const ReactCalculator = function(){
-    const handleClick=()=>{
-        alert("hello")
+    const [currentValue, setCurrentValue]= useState("0")
+    const [previousValue, setPreviousValue]= useState("0")
+    const [operator, setOperator] = useState(null)
+    const handleClick=(event)=>{
+        let buttonValue = event.target.innerHTML
+        let buttonClass = event.target.className
+        switch (buttonClass) {
+            case "number":
+                if (currentValue === "0"){
+                    setCurrentValue(buttonValue)
+                }else{
+                    setCurrentValue(currentValue.concat(buttonValue))
+                }
+                break;
+            case "modifier":
+                if (buttonValue === "RESET"){
+                    setCurrentValue("0")
+                    setPreviousValue("0")
+                    setOperator(null)
+                }else if(buttonValue === "DEL"){
+                    alert("delete requested")
+                    if (currentValue.length === 1 && currentValue === "0"){
+                        setCurrentValue("0")
+                        setPreviousValue("0")
+                        setOperator(null)
+                    }else if(currentValue.length === 1){
+                        setCurrentValue("0")
+                    }else{
+                        setCurrentValue(currentValue.slice(0, -1))
+                    }
+                }
+                break;
+                case "operator":
+                    if (operator === null){
+                        setOperator(buttonValue)
+                        setPreviousValue(currentValue)
+                        setCurrentValue("0")
+                    }else{
+                        handleEvaluation()
+                        setOperator(buttonValue)
+                    }
+                    break;
+                    case "dot":
+                        if(!currentValue.includes(".")){
+                            setCurrentValue(currentValue.concat(buttonValue))
+                        }
+                        break;
+                    case "evaluate":
+                        handleEvaluation()
+                        break;
+            default:
+
+                break;
+        }   
+    }
+    const handleEvaluation = ()=>{
+        let firstNumber = parseFloat(previousValue)
+        let secondNumber = parseFloat(currentValue)
+        switch (operator) {
+            case "x":
+                setPreviousValue((firstNumber * secondNumber).toString())
+                break;
+            case "÷":
+                setPreviousValue((firstNumber / secondNumber).toString())
+                break;
+            case "+":
+                setPreviousValue((firstNumber + secondNumber).toString())
+                break;
+            case "-":
+                setPreviousValue((firstNumber - secondNumber).toString())
+                break;
+            default:
+                break;
+        }
+        setCurrentValue("0")
     }
     return(
         <div className="main-container">
             <div className="calc-container">
                 <div className="display">
                     <div className="prev">
-                        <h5>0</h5>
+                        <h5>{previousValue}</h5>
                     </div>
                     <div className="curr">
-                        <h2>0</h2>
+                        <h2>{currentValue}</h2>
                     </div>
                 </div>
                 <div className="buttons">
